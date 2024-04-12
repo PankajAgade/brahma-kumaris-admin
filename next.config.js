@@ -8,7 +8,8 @@ const nextConfig = {
   trailingSlash: true,
   reactStrictMode: false,
   images: {
-    unoptimized: true,
+    loader: 'akamai',
+    path: '',
   },
   experimental: {
     esmExternals: false,
