@@ -1,6 +1,10 @@
 const path = require('path')
 
-module.exports = {
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
+  output: 'export',
   trailingSlash: true,
   reactStrictMode: false,
   experimental: {
@@ -16,6 +20,7 @@ module.exports = {
     return config
   },
   env: {
-    BASE_URL: "https://brahma-kumaris-backend.onrender.com",
+    BASE_URL: 'https://brahma-kumaris-backend.onrender.com'
   }
 }
+module.exports = nextConfig
