@@ -7,6 +7,9 @@ const nextConfig = {
   output: 'export',
   trailingSlash: true,
   reactStrictMode: false,
+  images: {
+    unoptimized: true,
+  },
   experimental: {
     esmExternals: false,
     jsconfigPaths: true // enables it for both jsconfig.json and tsconfig.json
