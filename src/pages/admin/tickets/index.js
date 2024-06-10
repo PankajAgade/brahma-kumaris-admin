@@ -59,8 +59,12 @@ const Tickets = () => {
 
   useEffect(() => {
     setDataGridLoading(true)
-    getDataFromServer(false)
-  }, [])
+    if (!page) {
+      getDataFromServer(false);
+    } else {
+      getDataFromServer(true);
+    }
+  }, [page])
   
   useEffect(() => {
     console.log("ticketList -> ", ticketList);
@@ -78,8 +82,8 @@ const Tickets = () => {
           setTicketList(pre => [...pre, ...res.data.data])
         } else {
           setTicketList([...res.data.data])
-          setPage(0)
-          setPageMaintain(0)
+          // setPage(0)
+          // setPageMaintain(0)
         }
         setDataGridLoading(false)
       })
@@ -92,10 +96,10 @@ const Tickets = () => {
   }
 
   //* call on Next Button
-  function getMoreData() {
-    setDataGridLoading(true)
-    getDataFromServer(true)
-  }
+  // function getMoreData() {
+  //   setDataGridLoading(true)
+  //   getDataFromServer(true)
+  // }
 
   const handleChangePage = (event, newPage) => {
     console.log({ newPage })
@@ -103,7 +107,7 @@ const Tickets = () => {
     if (page < newPage) {
       // * Next When Data need
       setPage(newPage)
-      getMoreData()
+      // getMoreData()
     } else {
       // *previous
     }
@@ -131,7 +135,8 @@ const Tickets = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {ticketList.map((m, i) => ({...m, index: i+1})).slice(page * 10, page * 10 + 10)?.map(row => {
+                  {/* {ticketList.map((m, i) => ({...m, index: i+1})).slice(page * 10, page * 10 + 10)?.map(row => { */}
+                  {ticketList.map((m, i) => ({...m, index: i+1})).slice(pageMaintain * 10, pageMaintain * 10 + 10)?.map(row => {
                     return (
                       <TableRow hover role='checkbox' tabIndex={-1} key={row.index}>
                         {columns.map(column => {
@@ -154,7 +159,7 @@ const Tickets = () => {
               component='div'
               count={totalCount}
               rowsPerPage={10}
-              page={page}
+              page={pageMaintain}
               onPageChange={handleChangePage}
             />
           </Paper>
